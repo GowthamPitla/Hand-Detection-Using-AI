@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300">
+  <rect width="480" height="300" fill="#ecfeff"/>
+  <text x="240" y="58" text-anchor="middle" font-size="34" font-family="Arial" fill="#0f172a">OK</text>
+  <g fill="#0891b2">
+    <circle cx="202" cy="174" r="24"/>
+    <rect x="220" y="90" width="30" height="120" rx="14"/>
+    <rect x="255" y="85" width="30" height="125" rx="14"/>
+    <rect x="290" y="95" width="30" height="115" rx="14"/>
+    <rect x="170" y="200" width="170" height="70" rx="28"/>
+  </g>
+</svg>

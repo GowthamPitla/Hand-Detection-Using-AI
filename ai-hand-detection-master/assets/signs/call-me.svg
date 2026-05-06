@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300">
+  <rect width="480" height="300" fill="#ffedd5"/>
+  <text x="240" y="58" text-anchor="middle" font-size="30" font-family="Arial" fill="#0f172a">CALL ME</text>
+  <g fill="#ea580c">
+    <rect x="170" y="90" width="34" height="118" rx="16"/>
+    <rect x="276" y="90" width="34" height="118" rx="16"/>
+    <rect x="172" y="192" width="144" height="70" rx="26"/>
+  </g>
+</svg>

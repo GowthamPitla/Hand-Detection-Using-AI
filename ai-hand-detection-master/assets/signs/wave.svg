@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300">
+  <rect width="480" height="300" fill="#fef3c7"/>
+  <text x="240" y="60" text-anchor="middle" font-size="32" font-family="Arial" fill="#0f172a">HI / BYE WAVE</text>
+  <g fill="none" stroke="#b45309" stroke-width="8" stroke-linecap="round">
+    <path d="M110 190 C130 160, 170 160, 190 190"/>
+    <path d="M290 190 C310 160, 350 160, 370 190"/>
+  </g>
+  <g fill="#f59e0b">
+    <rect x="190" y="95" width="30" height="105" rx="12"/>
+    <rect x="225" y="85" width="30" height="115" rx="12"/>
+    <rect x="260" y="95" width="30" height="105" rx="12"/>
+    <rect x="180" y="190" width="125" height="70" rx="26"/>
+  </g>
+</svg>

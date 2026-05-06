@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300">
+  <rect width="480" height="300" fill="#e2e8f0"/>
+  <text x="240" y="70" text-anchor="middle" font-size="32" font-family="Arial" fill="#0f172a">FIST</text>
+  <g fill="#334155">
+    <rect x="140" y="140" width="40" height="50" rx="12"/>
+    <rect x="185" y="140" width="40" height="50" rx="12"/>
+    <rect x="230" y="140" width="40" height="50" rx="12"/>
+    <rect x="275" y="140" width="40" height="50" rx="12"/>
+    <rect x="160" y="185" width="150" height="70" rx="28"/>
+  </g>
+</svg>

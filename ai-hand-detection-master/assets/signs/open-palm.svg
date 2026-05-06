@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300">
+  <rect width="480" height="300" fill="#e0f2fe"/>
+  <text x="240" y="70" text-anchor="middle" font-size="32" font-family="Arial" fill="#0f172a">OPEN PALM</text>
+  <g fill="#1d4ed8">
+    <rect x="120" y="120" width="28" height="90" rx="12"/>
+    <rect x="160" y="108" width="28" height="102" rx="12"/>
+    <rect x="200" y="98" width="28" height="112" rx="12"/>
+    <rect x="240" y="108" width="28" height="102" rx="12"/>
+    <rect x="280" y="120" width="28" height="90" rx="12"/>
+    <rect x="155" y="200" width="130" height="60" rx="26"/>
+  </g>
+</svg>

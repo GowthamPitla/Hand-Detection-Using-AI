@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300">
+  <rect width="480" height="300" fill="#dcfce7"/>
+  <text x="240" y="70" text-anchor="middle" font-size="32" font-family="Arial" fill="#0f172a">THUMBS UP</text>
+  <g fill="#16a34a">
+    <rect x="210" y="90" width="40" height="120" rx="16"/>
+    <rect x="170" y="170" width="150" height="78" rx="28"/>
+  </g>
+</svg>

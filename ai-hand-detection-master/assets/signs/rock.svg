@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300">
+  <rect width="480" height="300" fill="#f5f3ff"/>
+  <text x="240" y="58" text-anchor="middle" font-size="30" font-family="Arial" fill="#0f172a">ROCK</text>
+  <g fill="#7c3aed">
+    <rect x="175" y="92" width="30" height="120" rx="14"/>
+    <rect x="275" y="92" width="30" height="120" rx="14"/>
+    <rect x="165" y="190" width="150" height="72" rx="28"/>
+  </g>
+</svg>

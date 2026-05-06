@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300">
+  <rect width="480" height="300" fill="#eef2ff"/>
+  <text x="240" y="58" text-anchor="middle" font-size="30" font-family="Arial" fill="#0f172a">POINT UP</text>
+  <g fill="#4f46e5">
+    <rect x="225" y="82" width="32" height="130" rx="14"/>
+    <rect x="170" y="170" width="150" height="84" rx="30"/>
+  </g>
+</svg>

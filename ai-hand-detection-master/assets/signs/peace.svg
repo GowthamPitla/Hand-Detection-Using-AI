@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300">
+  <rect width="480" height="300" fill="#dbeafe"/>
+  <text x="240" y="70" text-anchor="middle" font-size="32" font-family="Arial" fill="#0f172a">PEACE</text>
+  <g fill="#2563eb">
+    <rect x="175" y="95" width="32" height="120" rx="14"/>
+    <rect x="220" y="95" width="32" height="120" rx="14"/>
+    <rect x="160" y="200" width="145" height="60" rx="26"/>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300">
+  <rect width="480" height="300" fill="#dcfce7"/>
+  <text x="240" y="58" text-anchor="middle" font-size="30" font-family="Arial" fill="#0f172a">THREE</text>
+  <g fill="#16a34a">
+    <rect x="176" y="95" width="30" height="115" rx="14"/>
+    <rect x="221" y="87" width="30" height="123" rx="14"/>
+    <rect x="266" y="95" width="30" height="115" rx="14"/>
+    <rect x="170" y="194" width="140" height="68" rx="26"/>
+  </g>
+</svg>

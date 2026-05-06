@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hand Detection using AI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Hand Detection using AI</div>
+    </div>
+  </header>
+  <main class="app-shell">
+    <section class="panel viewer-panel">
+      
+      <p id="loadingText" class="status">Loading model...</p>
+
+      <div class="viewer-wrap">
+        <video playsinline autoplay muted id="video"></video>
+        <canvas id="c1" class="mirror"></canvas>
+        <canvas id="labels" class="labels"></canvas>
+        <canvas id="mouse" class="mouse"></canvas>
+      </div>
+
+      <div class="button-row">
+        <button id="startBtn" class="btn waves-effect waves-light">Start</button>
+        <button id="stopBtn" class="btn waves-effect waves-light btn-secondary">Stop</button>
+      </div>
+    </section>
+
+    <aside class="panel control-panel">
+      <div class="panel-head">
+        <h2>Controls</h2>
+        <button id="helpBtn" class="btn-flat help-btn" type="button">Help</button>
+      </div>
+
+      <div class="control-block">
+        <label class="control-title">Smart Detection</label>
+        <div class="switch">
+          <label>
+            Off
+            <input type="checkbox" id="ai" disabled>
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+        <p class="helper" id="aiDesc">Enable this to access all features. Until it is ON, no detection features are active.</p>
+      </div>
+
+      <div class="control-block">
+        <label class="control-title">Gesture Mode</label>
+        <div class="switch">
+          <label>
+            Off
+            <input type="checkbox" id="signToggle">
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+        <p class="helper">Enable or disable sign gesture recognition.</p>
+      </div>
+
+      <div class="control-block control-block-accent">
+        <div class="control-row">
+          <label class="control-title">Mouse Control</label>
+          <button id="mouseHelpBtn" class="btn-flat help-btn" type="button">Mouse Guide</button>
+        </div>
+        <div class="switch">
+          <label>
+            Off
+            <input type="checkbox" id="mouseCtrlToggle">
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+        <p class="helper">Move the pointer, click with pinch, drag, scroll, and zoom using your hand. Run the bridge for real system mouse control.</p>
+      </div>
+
+      <div class="control-block">
+        <label class="control-title" for="fps">Processing Speed</label>
+        <p class="range-field">
+          <input type="range" id="fps" min="5" max="40" value="30">
+        </p>
+      </div>
+
+      <div class="meta">
+        <p>Hands: <span id="handCount">0</span></p>
+        <p>Sign: <span id="signLabel">Disabled</span></p>
+      </div>
+    </aside>
+  </main>
+
+  <div id="mouseHelpModal" class="modal help-modal">
+    <div class="modal-content">
+      <h4>Mouse Control Guide</h4>
+      <p>Turn on Mouse Control and use these gestures to control the pointer inside the app.</p>
+      <div class="help-grid">
+        <div class="help-card">
+          <img src="assets/mouse/move.svg" alt="Move cursor gesture">
+          <h5>Move Cursor</h5>
+          <p>Move your index finger to move the pointer.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/mouse/pinch-click.svg" alt="Click gesture">
+          <h5>Click</h5>
+          <p>Pinch thumb and index finger together to click.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/mouse/drag.svg" alt="Drag gesture">
+          <h5>Drag</h5>
+          <p>Keep the pinch held to drag objects or buttons.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/mouse/scroll.svg" alt="Scroll gesture">
+          <h5>Scroll</h5>
+          <p>Move the hand up and down to scroll the page.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/mouse/zoom.svg" alt="Zoom gesture">
+          <h5>Zoom</h5>
+          <p>Use two hands farther apart or closer together to zoom.</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="modal-close btn-flat">Close</a>
+    </div>
+  </div>
+
+  <div id="helpModal" class="modal help-modal">
+    <div class="modal-content">
+      <h4>Gesture Help</h4>
+      <p>Use these hand signs in front of the camera to trigger sign detection.</p>
+      <div class="help-grid">
+        <div class="help-card">
+          <img src="assets/signs/open-palm.svg" alt="Open palm sign">
+          <h5>Open Palm</h5>
+          <p>Show all fingers straight and spread.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/fist.svg" alt="Fist sign">
+          <h5>Fist</h5>
+          <p>Close all fingers into your palm.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/peace.svg" alt="Peace sign">
+          <h5>Peace</h5>
+          <p>Raise index and middle finger only.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/thumbs-up.svg" alt="Thumbs up sign">
+          <h5>Thumbs Up</h5>
+          <p>Keep thumb up, other fingers folded.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/thumbs-down.svg" alt="Thumbs down sign">
+          <h5>Bad (Thumbs Down)</h5>
+          <p>Point thumb down with folded fingers.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/wave.svg" alt="Wave sign">
+          <h5>Hi / Bye</h5>
+          <p>Wave your hand left and right clearly.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/ok.svg" alt="OK sign">
+          <h5>OK</h5>
+          <p>Touch thumb and index, keep the other fingers up.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/point-up.svg" alt="Point up sign">
+          <h5>Point Up</h5>
+          <p>Raise only index finger and fold other fingers.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/rock.svg" alt="Rock sign">
+          <h5>Rock</h5>
+          <p>Raise index and pinky fingers; fold middle and ring.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/call-me.svg" alt="Call me sign">
+          <h5>Call Me</h5>
+          <p>Raise thumb and pinky, keep middle fingers folded.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/three.svg" alt="Three sign">
+          <h5>Three</h5>
+          <p>Raise index, middle, ring fingers and fold pinky.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/A.svg" alt="A sign">
+          <h5>A</h5>
+          <p>ASL - A (fist)</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/B.svg" alt="B sign">
+          <h5>B</h5>
+          <p>ASL - B (palm)</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/L.svg" alt="L sign">
+          <h5>L</h5>
+          <p>ASL - L (index + thumb)</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/Y.svg" alt="Y sign">
+          <h5>Y</h5>
+          <p>ASL - Y (thumb + pinky)</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/clap.svg" alt="Clap gesture">
+          <h5>Clap / Together</h5>
+          <p>Bring both hands close together to indicate together/clap.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/heart.svg" alt="Heart gesture">
+          <h5>Heart</h5>
+          <p>Form a heart using both hands.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/signs/pray.svg" alt="Prayer gesture">
+          <h5>Prayer / Together</h5>
+          <p>Palms together gesture for both hands.</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close btn-flat">Close</a>
+    </div>
+  </div>
+
+  <img src="mouse/pointer.png" id="img" style="display: none;">
+
+  <script>
+    var modelIsLoaded = false;
+    var handpose = null;
+  </script>
+  <script src="video.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var modalElems = document.querySelectorAll('.modal');
+      M.Modal.init(modalElems);
+      var helpBtn = document.getElementById('helpBtn');
+      if(helpBtn){
+        helpBtn.addEventListener('click', function(e){
+          e.preventDefault();
+          var modal = M.Modal.getInstance(document.getElementById('helpModal'));
+          modal.open();
+        });
+      }
+      var mouseHelpBtn = document.getElementById('mouseHelpBtn');
+      if(mouseHelpBtn){
+        mouseHelpBtn.addEventListener('click', function(e){
+          e.preventDefault();
+          var modal = M.Modal.getInstance(document.getElementById('mouseHelpModal'));
+          modal.open();
+        });
+      }
+    });
+  </script>
+</body>
+</html>
